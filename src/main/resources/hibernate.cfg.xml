@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <property name="connection.driver_class">org.postgresql.Driver</property> <!-- DB Driver -->
+        <property name="connection.url">jdbc:postgresql://localhost:4040/dummydb</property> <!-- DB Name-->
+        <property name="connection.username">sharma</property> <!-- DB User -->
+        <property name="connection.password">sharma</property> <!-- DB Password -->
+        <property name="connection.pool_size">1</property>
+
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property> <!-- DB Dialect -->
+
+        <property name="hbm2ddl.auto">create</property> <!-- create / create-drop / update -->
+
+        <property name="show_sql">true</property> <!-- Show SQL in console -->
+        <property name="format_sql">false</property> <!-- Show SQL formatted -->
+
+        <mapping class="xyz.gauravsharma.Employee"/>
+
+    </session-factory>
+</hibernate-configuration>
