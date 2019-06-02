@@ -1,12 +1,17 @@
 package xyz.gauravsharma;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
-@Table(name="ADDRESS",schema = "EMS")
+@Table(name = "ADDRESS", schema = "EMS")
 public class Address {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ADDR_ID")
     private int id;
 
@@ -19,17 +24,9 @@ public class Address {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @OneToOne
-    @JoinColumn(name = "EMP_ID")
-    private Employee employee;
+    @ManyToMany(mappedBy = "addresses")
+    private List<Employee> employees = new ArrayList<>();
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 
     public int getId() {
         return id;
@@ -66,9 +63,19 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "city='" + city + '\'' +
+                "id=" + id +
+                ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
                 ", description='" + description + '\'' +
+                ", employees=" + employees +
                 '}';
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -12,16 +12,17 @@ public class MainClass {
     public static void main(String[] args) {
 
         Employee e1 = new Employee();
-        e1.setId(1);
         e1.setName("Sharma");
+
         Address address = new Address();
-        address.setId(1);
         address.setCity("Mumbai");
         address.setState("Maharashtra");
         address.setDescription("Living in Mumbai since 2012.");
-        address.setEmployee(e1);
-        e1.setAddress(address);
-       /*
+        e1.getAddresses().add(address);
+
+        address.getEmployees().add(e1);
+
+        /*
 
         Set<Address> addresses = new HashSet<>();
         addresses.add(address);
@@ -41,6 +42,7 @@ public class MainClass {
         // Step - 3
         session.beginTransaction();
         session.save(e1);
+        session.save(address);
         session.getTransaction().commit();
 
 
@@ -48,7 +50,7 @@ public class MainClass {
 
         session.beginTransaction();
         e1 = session.get(Employee.class, 1);
-        System.out.println(e1);
+        //System.out.println(e1);
         session.close();
         sessionFactory.close();
     }
