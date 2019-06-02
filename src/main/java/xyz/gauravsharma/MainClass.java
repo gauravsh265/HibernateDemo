@@ -4,6 +4,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class MainClass {
 
     public static void main(String[] args) {
@@ -13,13 +16,17 @@ public class MainClass {
         e1.setName("Sharma");
         Address address = new Address();
         address.setCity("Mumbai");
-        address.setDescription("Started living in Mumbai from 2012. Before That I wasliving in Rajasthan.");
-        e1.setAddress(address);
+        address.setState("Maharashtra");
+        address.setDescription("Living in Mumbai since 2012.");
+        Set<Address> addresses = new HashSet<>();
+        addresses.add(address);
 
         Address address1 = new Address();
-        address1.setCity("Ramgarhs");
-        address1.setDescription("Rajasthan.");
-        e1.setHomeAddress(address1);
+        address1.setCity("Ramgarh Shekahwati");
+        address1.setState("Rajasthan");
+        address1.setDescription("Khamma Ghani !!");
+        addresses.add(address1);
+        e1.setAddresses(addresses);
 
         // Step - 1
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

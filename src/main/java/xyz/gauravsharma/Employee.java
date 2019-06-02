@@ -1,6 +1,7 @@
 package xyz.gauravsharma;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEE", schema = "EMS")
@@ -13,16 +14,9 @@ public class Employee {
     @Column(name = "NAME")
     private String name;
 
-    @Embedded
-    private Address address;
-
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "city", column = @Column(name = "HOME_CITY")),
-            @AttributeOverride(name = "description", column = @Column(name = "HOME_DESC"))
-    })
-    private Address homeAddress;
-
+    @ElementCollection
+    @JoinTable(schema = "EMS")
+    private Set<Address> addresses;
 
     public int getId() {
         return id;
@@ -40,20 +34,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Address getAddress() {
-        return address;
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Address getHomeAddress() {
-        return homeAddress;
-    }
-
-    public void setHomeAddress(Address homeAddress) {
-        this.homeAddress = homeAddress;
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
     }
 
     @Override
@@ -61,8 +47,7 @@ public class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", address=" + address +
-                ", homeAddress=" + homeAddress +
+                ", addresses=" + addresses +
                 '}';
     }
 }

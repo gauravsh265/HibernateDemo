@@ -10,7 +10,9 @@ public class Address {
     @Column(name = "CITY")
     private String city;
 
-    @Lob
+    @Column(name = "STATE")
+    private String state;
+
     @Column(name = "DESCRIPTION")
     private String description;
 
@@ -20,6 +22,14 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getDescription() {
@@ -34,6 +44,7 @@ public class Address {
     public String toString() {
         return "Address{" +
                 "city='" + city + '\'' +
+                ", state='" + state + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
