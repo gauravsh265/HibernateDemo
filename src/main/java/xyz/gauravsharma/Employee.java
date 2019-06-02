@@ -1,19 +1,28 @@
 package xyz.gauravsharma;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "EMPLOYEE",schema = "EMS")
+@Table(name = "EMPLOYEE", schema = "EMS")
 public class Employee {
 
     @Id
+    @Column(name = "EMP_ID")
     private int id;
 
-    @Column
+    @Column(name = "NAME")
     private String name;
+
+    @Embedded
+    private Address address;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "city", column = @Column(name = "HOME_CITY")),
+            @AttributeOverride(name = "description", column = @Column(name = "HOME_DESC"))
+    })
+    private Address homeAddress;
+
 
     public int getId() {
         return id;
@@ -29,5 +38,31 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Address getHomeAddress() {
+        return homeAddress;
+    }
+
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address=" + address +
+                ", homeAddress=" + homeAddress +
+                '}';
     }
 }
