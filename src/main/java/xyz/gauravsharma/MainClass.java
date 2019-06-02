@@ -15,18 +15,22 @@ public class MainClass {
         e1.setId(1);
         e1.setName("Sharma");
         Address address = new Address();
+        address.setId(1);
         address.setCity("Mumbai");
         address.setState("Maharashtra");
         address.setDescription("Living in Mumbai since 2012.");
+        address.setEmployee(e1);
+        e1.setAddress(address);
+       /*
+
         Set<Address> addresses = new HashSet<>();
         addresses.add(address);
-
         Address address1 = new Address();
         address1.setCity("Ramgarh Shekahwati");
         address1.setState("Rajasthan");
         address1.setDescription("Khamma Ghani !!");
         addresses.add(address1);
-        e1.setAddresses(addresses);
+        e1.setAddresses(addresses);*/
 
         // Step - 1
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();

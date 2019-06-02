@@ -1,7 +1,6 @@
 package xyz.gauravsharma;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "EMPLOYEE", schema = "EMS")
@@ -14,9 +13,8 @@ public class Employee {
     @Column(name = "NAME")
     private String name;
 
-    @ElementCollection
-    @JoinTable(schema = "EMS")
-    private Set<Address> addresses;
+    @OneToOne(mappedBy = "employee",cascade = CascadeType.ALL)
+    private Address address;
 
     public int getId() {
         return id;
@@ -34,12 +32,12 @@ public class Employee {
         this.name = name;
     }
 
-    public Set<Address> getAddresses() {
-        return addresses;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddresses(Set<Address> addresses) {
-        this.addresses = addresses;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override
@@ -47,7 +45,7 @@ public class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", addresses=" + addresses +
+                ", address=" + address +
                 '}';
     }
 }

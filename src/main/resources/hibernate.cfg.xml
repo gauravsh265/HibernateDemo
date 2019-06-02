@@ -20,6 +20,7 @@
         <property name="format_sql">false</property> <!-- Show SQL formatted -->
 
         <mapping class="xyz.gauravsharma.Employee"/>
+        <mapping class="xyz.gauravsharma.Address"/>
 
     </session-factory>
 </hibernate-configuration>

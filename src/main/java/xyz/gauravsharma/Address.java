@@ -1,11 +1,14 @@
 package xyz.gauravsharma;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Lob;
+import javax.persistence.*;
 
-@Embeddable
+@Entity
+@Table(name="ADDRESS",schema = "EMS")
 public class Address {
+
+    @Id
+    @Column(name = "ADDR_ID")
+    private int id;
 
     @Column(name = "CITY")
     private String city;
@@ -15,6 +18,26 @@ public class Address {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @OneToOne
+    @JoinColumn(name = "EMP_ID")
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getCity() {
         return city;
